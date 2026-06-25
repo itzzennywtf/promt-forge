@@ -1,0 +1,11 @@
+{
+  "functions": {
+    "api/generate.js": {
+      "runtime": "nodejs20.x"
+    }
+  },
+  "routes": [
+    { "src": "/api/(.*)", "dest": "/api" },
+    { "src": "/(.*)", "dest": "/frontend/$1" }
+  ]
+}

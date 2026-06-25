@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Prompt Forge — Will of D</title>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;900&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+<!-- skull watermark svg -->
+<svg id="skull-bg" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" fill="var(--red)">
+  <ellipse cx="100" cy="90" rx="70" ry="65"/>
+  <rect x="60" y="140" width="80" height="30" rx="4"/>
+  <rect x="75" y="145" width="18" height="25" rx="2" fill="var(--bg)"/>
+  <rect x="107" y="145" width="18" height="25" rx="2" fill="var(--bg)"/>
+  <ellipse cx="76" cy="88" rx="20" ry="22" fill="var(--bg)"/>
+  <ellipse cx="124" cy="88" rx="20" ry="22" fill="var(--bg)"/>
+  <path d="M88 118 Q100 130 112 118" stroke="var(--bg)" stroke-width="4" fill="none" stroke-linecap="round"/>
+</svg>
+
+<div class="wrap">
+
+  <header>
+    <p class="eyebrow">∴ The Will of D ∴</p>
+    <h1>Prompt <span>Forge</span></h1>
+    <p class="subtitle">Transform raw ideas into powerful, detailed prompts — fit for a Pirate King.</p>
+  </header>
+
+  <div class="section-label">⚓ Configure Your Log Pose</div>
+
+  <div class="controls">
+    <div class="control-group">
+      <label>Purpose</label>
+      <select id="purpose">
+        <option value="general">⚔️ General / Any Task</option>
+        <option value="coding">💻 Coding & Development</option>
+        <option value="writing">✍️ Creative Writing</option>
+        <option value="image">🎨 Image Generation</option>
+        <option value="research">🔍 Research & Analysis</option>
+        <option value="marketing">📣 Marketing & Copywriting</option>
+        <option value="education">📚 Education & Explanation</option>
+        <option value="business">📊 Business & Strategy</option>
+        <option value="chatbot">🤖 Chatbot / System Prompt</option>
+        <option value="video">🎬 Video Script</option>
+      </select>
+    </div>
+
+    <div class="control-group">
+      <label>Style / Tone</label>
+      <select id="style">
+        <option value="balanced">⚖️ Balanced</option>
+        <option value="professional">🎩 Professional & Formal</option>
+        <option value="creative">🌊 Creative & Expressive</option>
+        <option value="technical">🔧 Technical & Precise</option>
+        <option value="simple">🌱 Simple & Clear</option>
+        <option value="persuasive">🔥 Persuasive & Bold</option>
+        <option value="academic">🎓 Academic & Scholarly</option>
+      </select>
+    </div>
+  </div>
+
+  <div class="slider-wrap" style="margin-bottom:28px;">
+    <div class="slider-header">
+      <label>Detail Level</label>
+      <span class="slider-val" id="detail-label">Balanced (50%)</span>
+    </div>
+    <input type="range" id="detail" min="1" max="100" value="50" />
+    <div style="display:flex;justify-content:space-between;font-size:10px;color:var(--text-dim);margin-top:4px;letter-spacing:0.05em;">
+      <span>Quick & Concise</span><span>Ultra Detailed</span>
+    </div>
+  </div>
+
+  <div class="section-label">⚑ Your Raw Prompt</div>
+
+  <div class="input-block">
+    <textarea id="raw-prompt" placeholder="Write your rough idea here... e.g. 'make an app to track sleep' or 'write a story about pirates'"></textarea>
+    <div class="meta-row">
+      <span id="char-count">0 characters</span>
+      <span>Enter your idea — the Forge will shape it.</span>
+    </div>
+  </div>
+
+  <div id="error-msg" class="error-msg"></div>
+
+  <button class="btn-generate" id="gen-btn" onclick="generatePrompt()">
+    <span class="shine"></span>
+    ⚓ Forge the Prompt
+  </button>
+
+  <div class="output-section">
+    <div class="divider">Forged Prompt</div>
+
+    <div class="output-box" id="output-box">
+      <div class="loading-dots" id="loading">
+        <div class="dot"></div><div class="dot"></div><div class="dot"></div>
+        <span style="margin-left:4px">Forging...</span>
+      </div>
+      <div id="output-text">
+        <span class="placeholder-msg">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>
+          Your enhanced prompt will appear here after forging.
+        </span>
+      </div>
+    </div>
+
+    <div class="output-footer" id="output-footer">
+      <button class="btn-copy" onclick="copyOutput()">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>
+        Copy Prompt
+      </button>
+      <button class="btn-clear" onclick="clearOutput()">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14a2 2 0 01-2 2H8a2 2 0 01-2-2L5 6"/><path d="M10 11v6M14 11v6"/></svg>
+        Clear
+      </button>
+    </div>
+  </div>
+
+</div>
+
+<div id="toast">Copied to clipboard!</div>
+
+<script src="app.js"></script>
+</body>
+</html>

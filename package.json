@@ -1,0 +1,8 @@
+{
+  "name": "prompt-forge",
+  "version": "1.0.0",
+  "description": "AI Prompt Enhancer — powered by NVIDIA Nemotron",
+  "scripts": {
+    "dev": "vercel dev"
+  }
+}
