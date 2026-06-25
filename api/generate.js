@@ -48,7 +48,7 @@ function buildSystemPrompt(purposeCtx, styleCtx, detailInstruction) {
   ].join("\n");
 }
 
-export default async function handler(req, res) {
+module.exports = async function handler(req, res) {
   // Only allow POST
   if (req.method !== "POST") {
     return res.status(405).json({ error: "Method not allowed. Use POST." });
@@ -104,4 +104,4 @@ export default async function handler(req, res) {
     console.error("Generate error:", error);
     return res.status(500).json({ error: error.message || "Something went wrong. Please try again." });
   }
-}
+};
